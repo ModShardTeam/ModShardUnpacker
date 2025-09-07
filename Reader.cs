@@ -40,7 +40,7 @@ internal static class MainOperations
             module.NativeWrite(Path.Join(dir.FullName, Path.DirectorySeparatorChar.ToString(), $"{mod.name}.dll"));
         }
         MemoryStream dllStream = new(mod.asm);
-        PEFile pe = new($"Assembly.dll", dllStream);
+        PEFile pe = new("Assembly.dll", dllStream);
         UniversalAssemblyResolver assemblyResolver = new(null, false, ".NETCoreApp,Version=v6.0");
         ICSharpCode.Decompiler.CSharp.CSharpDecompiler decompiler = new(pe, assemblyResolver, new DecompilerSettings());
         string code = decompiler.DecompileWholeModuleAsString();
